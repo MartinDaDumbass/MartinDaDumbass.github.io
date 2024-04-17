@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Post your pics</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background-color: pink;
+            color: magenta;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        #container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: left;
+        }
+
+        #plusIcon {
+            width: 15px; /* Adjust the size as needed */
+            height: 15px; /* Adjust the size as needed */
+            cursor: pointer;
+        }
+
+        label {
+            margin-top: 10px;
+            display: block;
+        }
+
+        input {
+            margin-top: 5px;
+        }
+
+        #uploadLog {
+            margin-top: 20px;
+            border-top: 2px solid magenta;
+            padding-top: 10px;
+        }
+
+        #logList {
+            list-style: none;
+            padding: 0;
+        }
+
+        #logList li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="container">
+<a href="Link_page.html">
+<img src="home_icon.png" alt="Link_page.html" style="width:42px;height:42px;"></a>
+        <h1>Welcome! Have you some pictures you want to share? Press on the plus to post them!</h1>
+
+
+
+        <!-- Input for selecting a file -->
+        <input type="file" id="fileInput" style="display: none">
+
+        <!-- Display the chosen file name -->
+        <p id="fileName"></p>
+
+        <!-- Input for adding a date -->
+        <label for="dateInput">Choose the date for your Post:</label>
+        <input type="date" id="dateInput">
+
+        <!-- Button to trigger file selection -->
+        <img src="plus_icon.png" alt="Plus Icon" id="plusIcon">
+
+        <!-- Upload log section -->
+        <div id="uploadLog">
+            <h2>Upload Log</h2>
+            <ul id="logList"></ul>
+        </div>
+
+    </div>
+
+    <!-- Script to handle file input and display log -->
+    <script>
+        document.getElementById('plusIcon').addEventListener('click', function () {
+            document.getElementById('fileInput').click();
+        });
+
+        document.getElementById('fileInput').addEventListener('change', function () {
+            var fileInput = document.getElementById('fileInput');
+            var fileNameDisplay = document.getElementById('fileName');
+            var dateInput = document.getElementById('dateInput');
+            var logList = document.getElementById('logList');
+
+            // Display the chosen file name
+            var fileName = fileInput.files[0].name;
+            fileNameDisplay.textContent = 'File: ' + fileName + ', Date: ' + dateInput.value;
+
+            // Add the file to the upload log
+            var listItem = document.createElement('li');
+            listItem.innerHTML = '<a href="#" onclick="viewFile(\'' + fileName + '\')">' + fileName + '</a> - Date: ' + dateInput.value;
+            logList.appendChild(listItem);
+        });
+
+        function viewFile(fileName) {
+            // Add logic to view the file, e.g., open a modal with file details
+            alert('Viewing file: ' + fileName);
+        }
+    </script>
+
+</body>
+
+</html>

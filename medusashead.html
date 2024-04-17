@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>have fun</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+    }
+    .fullscreen-bg {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      overflow: hidden;
+      z-index: -1;
+    }
+    .fullscreen-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  </style>
+</head>
+<script>
+    window.onload = function() {
+        // Open a new tab when the page loads
+        window.open('medusashead.html', '_blank');
+    };
+
+    // Listen for the 'beforeunload' event
+    window.addEventListener('beforeunload', function(event) {
+        // Open two more tabs with a delay of 0.5 seconds if the user tries to close the tab
+        setTimeout(function() {
+            window.open('medusashead.html', '_blank');
+            window.open('medusashead.html', '_blank');
+        }, 0.5);
+
+        // Cancel the event
+        event.preventDefault();
+        // Chrome requires returnValue to be set
+        event.returnValue = '';
+    });
+</script>
+<body>
+  <div class="fullscreen-bg">
+    <img src="man.jpg" alt="Fullscreen Image">
+  </div>
+
+  <audio autoplay loop>
+    <source src="scream.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+</body>
+</html>
